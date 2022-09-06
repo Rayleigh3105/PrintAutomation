@@ -9,7 +9,11 @@ echo Skript zur automatischen Erstellung einer STL Datei mit einem bestimmten Te
 echo:
 echo -----------------------------------------------------------------------------
 echo Parameter 1 - OpenScad Datei auf welche der Text platziert werden soll.
-echo Parameter 2 - Text der auf auf das Modell gedruckt werden soll. (Optional) 
+echo Parameter 2 - Text der auf auf das Modell gedruckt werden soll. (Optional)
+echo:
+echo Beispiel Aufruf:
+echo:
+echo ./createPrint.bat ./scad/Schild.scad Moritz
 echo -----------------------------------------------------------------------------
 echo:
 
@@ -32,13 +36,13 @@ echo:
 
 :: Rufe OpenScad auf um die STL Datei zu genrieren.
 set outputFileName=%textToPrint%.stl
-openscad -o ./stl/generated/%outputFileName% %scadFile% -D "textToPrint = ""%textToPrint%"""
+openscad -o ./stl/generated/%outputFileName% %scadFile% -D "textToPrintLineOne = ""%textToPrint%"""
 
 echo -----------------------------------------------------------------------------
 echo:
 
 :: Prüfen ob die STL Datei generiert worden ist.
-IF EXIST %outputFileName% (
+IF EXIST ./stl/generated/%outputFileName% (
     echo Model wurde erfolgreich bedruckt.
 ) ELSE (
     echo Beim Modellierungsvorgang ist ein Fehler aufgetreten.
