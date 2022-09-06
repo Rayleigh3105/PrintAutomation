@@ -2,7 +2,8 @@
 :: Skript zur automatischen Erstellung einer STL Datei mit einem bestimmten Text. 
 ::
 :: Parameter 1 - OpenScad Datei auf welche der Text platziert werden soll.
-:: Parameter 2 - Text der auf auf das Modell gedruckt werden soll.         - Optional
+:: Parameter 2 - Erste Zeile  - Text der auf auf das Modell gedruckt werden soll. (Optional)
+:: Parameter 3 - Zweite Zeile - Text der auf auf das Modell gedruckt werden soll. (Optional)
 
 echo:
 echo Skript zur automatischen Erstellung einer STL Datei mit einem bestimmten Text. 
