@@ -13,7 +13,7 @@ echo Parameter 2 - Text der auf auf das Modell gedruckt werden soll. (Optional)
 echo:
 echo Beispiel Aufruf:
 echo:
-echo ./createPrint.bat ./scad/Schild.scad Moritz
+echo createPrintOneLine.bat ./scad/Schild.scad Moritz
 echo -----------------------------------------------------------------------------
 echo:
 
@@ -36,17 +36,20 @@ echo:
 
 :: Rufe OpenScad auf um die STL Datei zu genrieren.
 set outputFileName=%textToPrint%.stl
-openscad -o ./stl/generated/%outputFileName% %scadFile% -D "textToPrintLineOne = ""%textToPrint%"""
+set outputFilePath=./stl/generated/%outputFileName%
+openscad -o %outputFilePath% %scadFile% -D "textToPrintLineOne = ""%textToPrint%"""
 
 echo -----------------------------------------------------------------------------
 echo:
 
 :: Prüfen ob die STL Datei generiert worden ist.
-IF EXIST ./stl/generated/%outputFileName% (
+IF EXIST %outputFilePath% (
     echo Model wurde erfolgreich bedruckt.
 ) ELSE (
     echo Beim Modellierungsvorgang ist ein Fehler aufgetreten.
     EXIT /B
 )
 
+:: Slicen wird von einer anderen Datei übernommen.
 echo Starte generierung des GCODES.
+call ./generateGCode.bat %outputFilePath%
